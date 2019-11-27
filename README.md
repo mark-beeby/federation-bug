@@ -3,13 +3,13 @@
 This repository contains two projects to demonstrate a potential bug with the Apollo Federation 
 `experimental_pollInterval` setting, and it not updating the gateway as expected when changes are detected.
 
-####Behaviour Desired
+#### Behaviour Desired
 
 When changing the customer service schema to introduce a new (or rename an existing) field, I expect the gateway to
 pick up changes and allow me to continue querying without having to restart the gateway each time when  
 `experimental_pollInterval` is set.
 
-####Repeatable Steps
+#### Repeatable Steps
 
 * Run `npm install` in the gateway and service folders. 
 * Start the customer service in its respective folder (`node index.js`)
@@ -19,14 +19,14 @@ pick up changes and allow me to continue querying without having to restart the 
 * Restart the customer service
 * Refresh playground (optional) to view autocomplete registers `somethingy`
 
-####Expected Results
+#### Expected Results
 
 The gateway will detect the change and allow queries to run in playground (http://localhost:4000) against the 
 somethingy field, e.g.
 
 `query { customer: customer{  name, somethingy } }`
 
-####Actual Results
+#### Actual Results
 
 The gateway's playground does detect the change and show a `somethingy` field when using  autocomplete, but the 
 query is unsuccessful until the gateway itself is restarted. The error given is:-
